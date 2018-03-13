@@ -1,6 +1,5 @@
 package com.chef;
 
-import java.io.IOException;
 import java.net.*;
 import java.util.*;
 import com.google.gson.*;
@@ -41,7 +40,7 @@ public class Comic
             this.month = newC.month;
             this.day = newC.day;
         }
-        catch(IOException IOEx)
+        catch(Exception IOEx)
         {IOEx.printStackTrace();}
     }
 }
