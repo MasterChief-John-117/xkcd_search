@@ -83,4 +83,16 @@ public class xkcdClient {
             e.printStackTrace();
         }
     }
+    public List<Comic> searchByTitle(String title)
+    {
+        List<Comic> cont = new ArrayList<>();
+        for (Comic c : fullCache)
+        {
+            if(c.title != null && c.title.toLowerCase().contains(title.toLowerCase()))
+            {
+                cont.add(c);
+            }
+        }
+        return cont;
+    }
 }
