@@ -1,9 +1,6 @@
 package com.chef;
 
-import com.google.gson.Gson;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 class Main
 {
@@ -11,5 +8,12 @@ class Main
 
     public static void main(String[] args) {
         xkcd.sync();
+        Timer autoSync = new Timer();
+        autoSync.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        xkcd.sync();
+                    }
+                }, 30 * 60 * 1000);
     }
 }
