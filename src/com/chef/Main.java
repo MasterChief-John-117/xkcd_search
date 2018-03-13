@@ -1,6 +1,7 @@
 package com.chef;
 
 import java.util.*;
+import static spark.Spark.*;
 
 class Main
 {
