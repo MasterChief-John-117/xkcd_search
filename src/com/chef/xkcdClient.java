@@ -18,6 +18,7 @@ public class xkcdClient {
 
     public void sync() {
         System.out.println("Starting sync at " + new Date().toString());
+        //Create the cache file if not exist, else just load it
         File cacheFile = new File(cachePath);
         try {
             cacheFile.createNewFile();
@@ -25,6 +26,7 @@ public class xkcdClient {
             e.printStackTrace();
         }
 
+        //Read the current json from the file
         StringBuilder sb = new StringBuilder();
         BufferedReader reader = null;
         try {
@@ -45,6 +47,7 @@ public class xkcdClient {
         {ex.printStackTrace();}
         String rawCache = sb.toString();
 
+        //If it's emtpy
         if (rawCache.length() < 2) {
             fullCache = new ArrayList<Comic>();
         }

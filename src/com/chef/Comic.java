@@ -19,6 +19,7 @@ public class Comic
     {
         try
         {
+            //Download json from provided URL
             URL url = new URL(Url);
             Scanner scanner = new Scanner(url.openStream());
             StringBuilder sb = new StringBuilder();
@@ -27,7 +28,8 @@ public class Comic
                 sb.append(scanner.nextLine());
             }
             String jsonValue = sb.toString();
-            
+
+            //Build the comic from downloaded string
             Gson gson = new Gson();
             Comic newC = gson.fromJson(jsonValue, Comic.class);
 
