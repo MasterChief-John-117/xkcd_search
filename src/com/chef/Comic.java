@@ -11,6 +11,7 @@ public class Comic
     public String safe_title;
     public String alt;
     public String img;
+    public String transcript;
     public String year;
     public String month;
     public String day;
@@ -37,6 +38,7 @@ public class Comic
             this.title = newC.title;
             this.safe_title = newC.safe_title;
             this.alt = newC.alt;
+            this.transcript = newC.transcript;
             this.img = newC.img;
             this.year = newC.year;
             this.month = newC.month;
