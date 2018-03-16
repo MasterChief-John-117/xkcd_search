@@ -84,6 +84,14 @@ public class xkcdClient {
             e.printStackTrace();
         }
     }
+    public void saveDb()
+    {
+        try (PrintWriter out = new PrintWriter(cachePath)) {
+            out.println(new GsonBuilder().setPrettyPrinting().create().toJson(fullCache));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
     public List<Comic> searchByTitle(String title)
     {
         List<Comic> cont = new ArrayList<>();
