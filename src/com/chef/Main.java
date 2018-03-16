@@ -28,5 +28,10 @@ class Main
             response.type("application/json");
             return gson.toJson(xkcd.searchByTitle(title));
         }));
+        get("/search/:params", ((request, response) -> {
+            String params = request.params(":params").replaceAll("%20", " ");
+            response.type("application/json");
+            return gson.toJson(xkcd.searchAll(params));
+        }));
     }
 }
