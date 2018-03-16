@@ -92,6 +92,17 @@ public class xkcdClient {
             e.printStackTrace();
         }
     }
+
+    public Comic findByNum(int number)
+    {
+        for (Comic c : fullCache)
+        {
+            if(c.num == number){
+                return c;
+            }
+        }
+        return null;
+    }
     public List<Comic> searchByTitle(String title)
     {
         List<Comic> cont = new ArrayList<>();
