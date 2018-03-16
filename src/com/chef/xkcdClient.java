@@ -71,6 +71,7 @@ public class xkcdClient {
         System.out.println("Latest comic is " + lastComic.num + ", last stored is " + (fullCache.size()));
         for(int i = next; i <= lastComic.num; i++)
         {
+            if(i == 404) continue;
             System.out.println("Adding comic " + i);
             fullCache.add(new Comic(getApiUrlFromNumber(i)));
             addedCount++;
