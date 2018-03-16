@@ -23,6 +23,36 @@ class Main
         System.out.println("Setting port to " + port);
         port(port);
 
+        before(((request, response) -> {
+            String reqInfo = "DateTime: " + new Date() + "\n";
+            reqInfo += "Client IP: " + request.ip() + "\n";
+            reqInfo += "Headers: " + request.headers().toString() + "\n";
+            reqInfo += "User-Agent: " + request.userAgent() + "\n";
+            System.out.println(reqInfo);
+        }));
+
+        get("/tags/:tag", ((request, response) ->{
+            String params = request.params(":tag").replaceAll("%20", " ");
+            response.type("application/json");
+            return gson.toJson(xkcd.searchTags(params));
+        }));
+
+        get("/tags/:num/add/:tag", ((request, response) ->{
+            Comic sel = null;
+            try{
+                sel = xkcd.findByNum(Integer.parseInt(request.params(":num")));
+            }
+            catch(Exception ex)
+            {
+                response.status(404);
+                return ("Comic not found");
+            }
+            String tag = request.params(":tag").replaceAll("%20", " ");
+            sel.tags.add(tag);
+            xkcd.saveDb();
+            return "Added tag \"" + tag + "\" to comic " + request.params(":num");
+        }));
+
         get("/title/:title", ((request, response) -> {
             String title = request.params(":title").replaceAll("%20", " ");
             response.type("application/json");
