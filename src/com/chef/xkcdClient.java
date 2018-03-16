@@ -115,4 +115,44 @@ public class xkcdClient {
         }
         return cont;
     }
+    public HashSet<Comic> searchAll(String params)
+    {
+        HashSet<Comic> cont = new HashSet<>();
+        params = params.toLowerCase();
+        for(Comic c : fullCache)
+        {
+            if(c.title != null && c.title.toLowerCase().contains(params))
+            {
+                cont.add(c);
+            }
+            if(c.alt != null && c.alt.toLowerCase().contains(params))
+            {
+                cont.add(c);
+            }
+            if(c.transcript != null && c.transcript.toLowerCase().contains(params))
+            {
+                cont.add(c);
+            }
+            for(String t : c.tags)
+            {
+                if(t.toLowerCase().contains(params)){
+                    cont.add(c);
+                }
+            }
+        }
+        return cont;
+    }
+
+    public HashSet<Comic> searchTags(String tag) {
+        HashSet<Comic> cont = new HashSet<>();
+        tag = tag.toLowerCase();
+        for(Comic c : fullCache){
+            for(String t : c.tags)
+            {
+                if(t.toLowerCase().contains(tag)){
+                    cont.add(c);
+                }
+            }
+        }
+        return cont;
 }
