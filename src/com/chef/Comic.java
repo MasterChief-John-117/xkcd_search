@@ -15,7 +15,7 @@ public class Comic
     public String year;
     public String month;
     public String day;
-
+    public HashSet<Tag> tags;
     public Comic(String Url)
     {
         try
@@ -43,6 +43,7 @@ public class Comic
             this.year = newC.year;
             this.month = newC.month;
             this.day = newC.day;
+            this.tags = new HashSet<>(){};
         }
         catch(Exception IOEx)
         {IOEx.printStackTrace();}

@@ -55,7 +55,6 @@ public class xkcdClient {
         {
             fullCache = gson.fromJson(rawCache, new TypeToken<ArrayList<Comic>>(){}.getType());
         }
-
         int next;
         if (fullCache.isEmpty())
         {
@@ -133,9 +132,9 @@ public class xkcdClient {
             {
                 cont.add(c);
             }
-            for(String t : c.tags)
+            for(Tag t : c.tags)
             {
-                if(t.toLowerCase().contains(params)){
+                if(t.text.toLowerCase().contains(params)){
                     cont.add(c);
                 }
             }
@@ -147,9 +146,9 @@ public class xkcdClient {
         HashSet<Comic> cont = new HashSet<>();
         tag = tag.toLowerCase();
         for(Comic c : fullCache){
-            for(String t : c.tags)
+            for(Tag t : c.tags)
             {
-                if(t.toLowerCase().contains(tag)){
+                if(t.text.toLowerCase().contains(tag)){
                     cont.add(c);
                 }
             }

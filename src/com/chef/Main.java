@@ -1,6 +1,8 @@
 package com.chef;
 
 import com.google.gson.*;
+
+import java.io.*;
 import java.util.*;
 import static spark.Spark.*;
 
@@ -14,11 +16,12 @@ class Main
         //Start by configuring automatic syncing of comics to run every 30 minutes
         Timer autoSync = new Timer();
         autoSync.scheduleAtFixedRate(new TimerTask() {
-                    @Override
-                    public void run() {
-                        xkcd.sync();
-                    }
-                }, new Date(), 30 * 60 * 1000);
+            @Override
+            public void run() {
+              xkcd.sync();
+           }
+        }, new Date(), 30 * 60 * 1000);
+
 
         System.out.println("Setting port to " + port);
         port(port);
@@ -48,7 +51,7 @@ class Main
                 return ("Comic not found");
             }
             String tag = request.params(":tag").replaceAll("%20", " ");
-            sel.tags.add(tag);
+            sel.tags.add(new Tag(tag, request.ip()));
             xkcd.saveDb();
             return "Added tag \"" + tag + "\" to comic " + request.params(":num");
         }));
