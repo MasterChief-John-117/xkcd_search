@@ -9,7 +9,7 @@ import static spark.Spark.*;
 class Main
 {
     public static final xkcdClient xkcd = new xkcdClient();
-    public static final int port = 80;
+    public static final int port = 9000;
     public static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static void main(String[] args) {
@@ -34,13 +34,13 @@ class Main
             System.out.println(reqInfo);
         }));
 
-        get("/tags/:tag", ((request, response) ->{
+        get("/xkcd/tags/:tag", ((request, response) ->{
             String params = request.params(":tag").replaceAll("%20", " ");
             response.type("application/json");
             return gson.toJson(xkcd.searchTags(params));
         }));
 
-        get("/tags/:num/add/:tag", ((request, response) ->{
+        get("/xkcd/tags/:num/add/:tag", ((request, response) ->{
             Comic sel = null;
             try{
                 sel = xkcd.findByNum(Integer.parseInt(request.params(":num")));
@@ -56,12 +56,12 @@ class Main
             return "Added tag \"" + tag + "\" to comic " + request.params(":num");
         }));
 
-        get("/title/:title", ((request, response) -> {
+        get("/xkcd/title/:title", ((request, response) -> {
             String title = request.params(":title").replaceAll("%20", " ");
             response.type("application/json");
             return gson.toJson(xkcd.searchByTitle(title));
         }));
-        get("/search/:params", ((request, response) -> {
+        get("/xkcd/search/:params", ((request, response) -> {
             String params = request.params(":params").replaceAll("%20", " ");
             response.type("application/json");
             return gson.toJson(xkcd.searchAll(params));
