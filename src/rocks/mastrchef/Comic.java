@@ -1,8 +1,8 @@
-package com.chef;
+package rocks.mastrchef;
 
-import java.net.*;
+import java.net.URL;
 import java.util.*;
-import com.google.gson.*;
+import com.google.gson.Gson;
 
 public class Comic
 {
@@ -43,7 +43,7 @@ public class Comic
             this.year = newC.year;
             this.month = newC.month;
             this.day = newC.day;
-            this.tags = new HashSet<>(){};
+            this.tags = new HashSet<Tag>(){};
         }
         catch(Exception IOEx)
         {IOEx.printStackTrace();}

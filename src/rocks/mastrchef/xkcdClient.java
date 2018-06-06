@@ -1,9 +1,7 @@
-package com.chef;
+package rocks.mastrchef;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
+import com.google.gson.*;
+import com.google.gson.reflect.*;
 import java.io.*;
 import java.util.*;
 

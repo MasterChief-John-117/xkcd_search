@@ -1,4 +1,4 @@
-package com.chef;
+package rocks.mastrchef;
 
 import java.util.Date;
 
